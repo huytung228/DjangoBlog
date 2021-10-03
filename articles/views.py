@@ -51,3 +51,10 @@ def create_article(request):
             return redirect('articles:list')
     f = ArticleForm()
     return render(request, 'articles/article_create.html', {'form' : f, 'action_type' : 'create'})
+
+def article_search(request):
+    if request.method == 'POST':
+        data_post = dict(request.POST)
+        search_string = data_post['search_string'][0]
+        articles = Article.objects.filter(title__icontains=search_string)
+        return render(request, 'articles/article_list.html', {'arts' : articles, 'action' : 'search'})

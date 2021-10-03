@@ -2,6 +2,11 @@
 
 {% block content %}
     <h1>Article List</h1>
+    <form action="{% url 'articles:search' %}", method="post">
+        {% csrf_token %}
+        <input type="text", name="search_string", value="Title">
+        <input type="submit", value="Search", name="search_button">
+    </form>
     <div class='articles'>
         {% for art in arts %}
             <div class="art">
@@ -10,6 +15,11 @@
                 <p>{{ art.date }}</p>
                 <p class="author">added by {{ art.author.username }}</p>
             </div>
+        {% empty %}
+            {% if action == 'search' %}
+                <p>Can not find acticle you want</p>
+            {% endif %}
+                
         {% endfor%}
     </div>
 {% endblock %}
