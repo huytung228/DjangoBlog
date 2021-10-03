@@ -1,0 +1,19 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<div class="article-detail">
+    <div class="article">
+        <img src="{{ article.thumb.url }}" alt="">
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.body }}</p>
+        <p>{{ article.date }}</p>
+        <p>Add by {{ article.author }}</p>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="{% url 'articles:delete' article_delete=article.slug %}">Delete</a></li>
+            <li><a href="{% url 'articles:edit' article_edit=article.slug %}">Edit</a></li>
+        </ul>
+    </nav>
+</div>
+{% endblock %}

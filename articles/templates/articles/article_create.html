@@ -1,0 +1,19 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+    <div>
+        <h2>'Create an Awesome New Article'</h2>
+        <form class="site-form", action="", method="post", enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            {% if action_type == 'create' %}
+                <input type="submit" name="Create" id="" value="Create">
+            {% endif %}
+            {% if action_type == 'edit' %}
+                <input type="submit" name="Create" id="" value="Edit">
+            {% endif %}
+        </form>
+    </div>
+
+{% endblock %}
